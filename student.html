@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Attendance</title>
+</head>
+
+<body>
+
+    <h1>Student Attendance</h1>
+
+    <label>Student Name</label>
+    <br>
+    <input type="text" id="studentName" placeholder="Enter your name">
+
+    <br><br>
+
+    <label>Group</label>
+    <br>
+    <input type="text" id="studentGroup" placeholder="Enter your group">
+
+    <br><br>
+
+    <button onclick="generateQR()">Generate My QR</button>
+
+    <div id="qrcode"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+    <script>
+        function generateQR() {
+
+            let name = document.getElementById("studentName").value;
+            let group = document.getElementById("studentGroup").value;
+
+            if (name === "" || group === "") {
+                alert("Please enter your name and group");
+                return;
+            }
+
+            document.getElementById("qrcode").innerHTML = "";
+
+            let studentData = name + "|" + group;
+
+            new QRCode(
+                document.getElementById("qrcode"),
+                studentData
+            );
+        }
+    </script>
+
+</body>
+
+</html>
